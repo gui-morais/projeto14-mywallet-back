@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { clientsCollection } from '../database/db.js';
+import { clientsCollection } from '../../database/db.js';
 
 export async function signUp(req, res) {
     const { name, email, password } = req.body;
@@ -16,7 +16,7 @@ export async function signUp(req, res) {
             {email}
         ]});
         if(user) {
-            return res.send("Usuário já cadastrado").status(409);
+            return res.status(409).send("Usuário já cadastrado");
         }
 
         await clientsCollection.insertOne(newClient);

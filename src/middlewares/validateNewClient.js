@@ -1,7 +1,7 @@
 import { newClientSchema } from "../models/models.js";
 
 export function validateNewClient (req, res, next) {
-    const validation = newClientSchema.validate(req.body);
+    const validation = newClientSchema.validate(req.body, {abortEarly: false});
 
     if(validation.error) {
         const errors = validation.error.details.map((detail) => detail.message);

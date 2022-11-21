@@ -12,6 +12,7 @@ export const clientSchema = joi.object({
 });
 
 export const transactionSchema = joi.object({
+    _id: joi.string(),
     value: joi.number().required(),
     description: joi.string().min(3).required(),
     type: joi.string().valid("Entrada", "Saída").required()

@@ -6,9 +6,9 @@ export async function getTransactions(req, res) {
 
     try{
         const session = await sessionsCollection.findOne({token});
-        const transactions = await transactionCollection.find({_id: session.userID}).toArray();
+        const transactions = await transactionCollection.find({userID: session.userID}).toArray();
         transactions.forEach(e => delete e.userID);
-        return res.send(transactions).status(200);
+        return res.status(200).send(transactions);
     } catch(error) {
         console.log(error);
         return res.sendStatus(500);

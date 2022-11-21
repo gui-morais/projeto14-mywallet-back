@@ -1,4 +1,4 @@
-import { express } from "express";
+import express from "express";
 import { signIn } from "../controllers/clients/signIn.js";
 import { signUp } from "../controllers/clients/signUp.js";
 import { deleteTransactions } from "../controllers/transactions/deleteTransactions.js";
