@@ -24,7 +24,7 @@ export async function signIn(req, res) {
             await sessionsCollection.insertOne({token, userID:user._id});
         }
 
-        return res.status(202).send(token);
+        return res.status(202).send({token, name: user.name});
     } catch(error) {
         console.log(error);
         return res.sendStatus(500);

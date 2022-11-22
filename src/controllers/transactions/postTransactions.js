@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { sessionsCollection, transactionCollection } from "../../database/db.js";
 
 export async function postTransactions(req, res) {
@@ -7,7 +8,9 @@ export async function postTransactions(req, res) {
 
     try{
         const session = await sessionsCollection.findOne({token});
-        await transactionCollection.insertOne({userID: session.userID, value, description, type});
+        const day = new Date();
+        const date = {day: day.getDate(), month: day.getMonth()+1};
+        await transactionCollection.insertOne({userID: session.userID, value: Number(value), description, type, date});
         return res.sendStatus(201);
     } catch(error) {
         console.log(error);
